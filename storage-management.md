@@ -60,3 +60,15 @@ $ sudo lvcreate -V 1500G --thin -n client1 mythinvol/thinvol
   WARNING: Set activation/thin_pool_autoextend_threshold below 100 to trigger automatic extension of thin pools before they get full.
   Logical volume "client1" created.
   ```
+
+## Features and flags
+
+- XFS info `xfs_info /`
+- Optomize buy using a external device for XFS's log information.
+- `mkfs.exfs -l logdev=/dev/myvol/log /dev/myvol/data`
+- `mount /dev/myvol/data /mnt -o logdev=/dev/myvol/log`
+- `cat /sys/block/<DEVICE/queue/scheduler>` (deadline/noop/cfq)
+- Check fragmetation `xfs_db -c frag -r /dev/myvol/data`
+- Defrag `xfs_fsr`, it does not need any argument.
+
+## Remote Block Storage
